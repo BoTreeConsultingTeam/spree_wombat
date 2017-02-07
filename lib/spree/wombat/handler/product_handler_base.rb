@@ -91,7 +91,8 @@ module Spree
           if taxon
             parent.children << taxon
           else
-            taxon = parent.children.create!(name: taxon_name, position: position)
+            #Adding taxonomy_id, because its needed to associate this taxon with the main taxonomy created.
+            taxon = parent.children.create!(name: taxon_name, position: position, taxonomy_id: parent.taxonomy_id)
           end
           parent.save
           # store the taxon so we can assign it later
